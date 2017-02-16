@@ -1,1 +1,1 @@
-# Test
+# If you're visiting this project, be warned: I don't expect it to make sense to anyone else but me, because it's just, as the name suggests a testing folder for my own personal use. Should you find anything interesting, feel free to use it, but i can't promise i remember what i've done
