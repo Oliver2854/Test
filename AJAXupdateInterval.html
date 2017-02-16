@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Untitled 1</title>
+
+</head>
+
+<body>
+<form method="post">
+<input id="lise" type="text" />
+<input name="Button1" type="button" value="Try me" onclick="begin(document.getElementById('lise').value)"/>
+</form>
+<div id="txtHint"><p>SÅ vil det stå her</p></div>
+
+<script>
+function begin(str) {
+setInterval(function(){ check(str) }, 500);
+}
+function check(str) {
+if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else { // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("txtHint").innerHTML=this.responseText;
+    }
+  }
+xmlhttp.open("POST", "dbcheck.php", true);
+xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xmlhttp.send("q="+str);
+}
+function changing (stuff) {
+document.getElementById("txtHint").innerHTML = stuff;
+}
+</script>
+
+</body>
+
+</html>

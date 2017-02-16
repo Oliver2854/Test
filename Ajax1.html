@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<script>
+function checker() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      if (this.responseText == 0) {
+      document.getElementById("hey").style.backgroundColor = "red";
+      }else if (this.responseText == 1) {
+      document.getElementById("hey").style.backgroundColor = "green";
+      }
+    }
+  };
+xhttp.open("POST", "dbcheck.php", true);
+xhttp.send("id=11");
+}
+</script>
+<script>
+function updatedb(onOrOff) {
+if (onOrOff == "red") {
+var verdi = 1
+}else if (onOrOff == "green") {
+var verdi = 0
+}
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+xhttp.open("POST", "dbupdate.php", true);
+xhttp.send("id=11&val="+verdi);
+}
+</script>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Untitled 1</title>
+</head>
+
+<body onload="setInterval(checker, 50)">
+<input name="button" type="button" value="Tryk" onclick="updatedb(document.getElementById('hey').style.backgroundColor)"/>
+<div id="hey" style="height:50px"></div>
+
+</body>
+
+</html>

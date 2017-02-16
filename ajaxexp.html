@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Untitled 1</title>
+
+</head>
+
+<body>
+<form method="post">
+<input id="lise" type="text" />
+<input id="five" type="checkbox" value="1" />
+<button onclick="update(11, document.getElementById('five').checked)">Try it</button>
+<input name="Button2" type="button" value="Listen" onclick="begin(11)"/>
+</form>
+<div id="txtHint"><p>Så vil det stå her</p></div>
+<p id="answer"></p>
+
+<script>
+function update (updateid, condition){
+if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else { // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+    getElementById.answer.innerHTML = this.responseText;
+    }
+  }
+xmlhttp.open("POST", "dbupdate.php", true);
+xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xmlhttp.send("id="+updateid+"&val="+Number(condition));
+}
+</script>
+
+<!-- <script>
+function begin(id) {
+setInterval(function(){ check(id) }, 500);
+}
+function check(id) {
+if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else { // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      if (this.responseText>0) {
+      document.getElementById("5").checked=true;
+      }
+    }
+  }
+xmlhttp.open("POST", "dbcheck.php", true);
+xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xmlhttp.send("id="+id);
+}
+</script> -->
+
+</body>
+
+</html>
